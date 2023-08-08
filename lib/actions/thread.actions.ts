@@ -190,6 +190,8 @@ export async function fetchThreadById(threadId: string) {
             },
           },
         ],
+      }).sort({
+        createdBy : -1
       })
       .exec();
 
