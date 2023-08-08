@@ -15,7 +15,7 @@ export default async function ThreadsTab({
   accountId,
   accountType,
 }: Props) {
-  // TODO : Fetch profile threads
+
   let result: any;
 
   if (accountType === "Community") {
