@@ -149,7 +149,7 @@ export default function ThreadCard({
             href={`/communities/${community.id}`}
             className="mt-5 flex items-center"
           >
-            <p className="text-subtle medium text-gray-1">
+            <p className="text-subtle-medium text-gray-1">
               {formatDateString(createdAt)} - {community.name} Community
             </p>
            <div className="h-6 w-6 shrink-0 relative">
