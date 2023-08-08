@@ -60,7 +60,6 @@ export default function AccountProfile({ user, btnTitle }: Props) {
     if (e.target?.files?.length) {
       const file = e.target.files[0];
       setFiles(Array.from(e.target.files));
-      console.log("e.target.files ", e.target.files);
 
       if (!file.type.includes("image")) return;
       fileReader.onload = async (event) => {
@@ -78,7 +77,6 @@ export default function AccountProfile({ user, btnTitle }: Props) {
     const hasImageChanged = isBase64Image(blob);
     if (hasImageChanged) {
       const imgRes = await startUpload(files);
-      console.log("imgRes", imgRes);
       if (imgRes && imgRes[0].fileUrl) {
         values.profile_photo = imgRes[0].fileUrl;
       }

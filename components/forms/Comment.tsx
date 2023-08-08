@@ -30,7 +30,6 @@ export default function Comment({
   currentUserId,
   currentUserImg,
 }: CommentProps) {
-
   const pathname = usePathname();
   const router = useRouter();
 
@@ -43,55 +42,54 @@ export default function Comment({
 
   async function onSubmit(values: z.infer<typeof CommentValidation>) {
     try {
-      await addCommentToThread({
-        commentText: values.thread,
-        userId: JSON.parse(currentUserId as string),
-        threadId : JSON.parse(threadId),
-        path: pathname,
-      });
+      await addCommentToThread(
+        threadId,
+    values.thread,
+    JSON.parse(currentUserId as string),
+    pathname
+      );
       form.reset();
-    //   router.push("/");
+
     } catch (error: any) {
-      console.log(`Failed to create thread ${error.message}`);
     }
   }
 
   return (
     <>
-    <Form {...form}>
-      <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
-        <FormField
-          control={form.control}
-          name="thread"
-          render={({ field }) => (
-            <FormItem className="flex w-full items-center gap-3">
-              <FormLabel>
-                <Image
-                  src={currentUserImg}
-                  alt="profile-image"
-                  height={48}
-                  width={48}
-                  className="rounded-full object-contain"
-                />
-              </FormLabel>
+      <Form {...form}>
+        <form className="comment-form" onSubmit={form.handleSubmit(onSubmit)}>
+          <FormField
+            control={form.control}
+            name="thread"
+            render={({ field }) => (
+              <FormItem className="flex w-full items-center gap-3">
+                <FormLabel>
+                  <Image
+                    src={currentUserImg}
+                    alt="profile-image"
+                    height={48}
+                    width={48}
+                    className="rounded-full object-contain"
+                  />
+                </FormLabel>
 
-              <FormControl className="border-none bg-transparent">
-                <Input
-                  type="text"
-                  className="no-focus text-light-1 outline-none"
-                  placeholder="Comment..."
-                  {...field}
-                />
-              </FormControl>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <Button type="submit" className="comment-form_btn">
-          Reply
-        </Button>
-      </form>
-    </Form>
+                <FormControl className="border-none bg-transparent">
+                  <Input
+                    type="text"
+                    className="no-focus text-light-1 outline-none"
+                    placeholder="Comment..."
+                    {...field}
+                  />
+                </FormControl>
+                <FormMessage />
+              </FormItem>
+            )}
+          />
+          <Button type="submit" className="comment-form_btn">
+            Reply
+          </Button>
+        </form>
+      </Form>
     </>
   );
 }

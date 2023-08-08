@@ -148,7 +148,6 @@ export async function fetchCommunities({
     // Count the total number of communities that match the search criteria (without pagination).
     const totalCommunitiesCount = await Community.countDocuments(query);
 
-    console.log("totalCommunitiesCount", totalCommunitiesCount);
 
     // Check if there are more communities beyond the current page.
     const isNext = totalCommunitiesCount > skipAmount + communitiesQuery.length;

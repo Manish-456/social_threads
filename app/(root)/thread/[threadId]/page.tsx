@@ -35,16 +35,16 @@ export default async function Page({ params }: Props) {
        content={thread.text}
        comments={thread.children}
        id={thread._id}
-       currentUserId={user?.id || ""}
+       currentUserId={user?.id}
      />
 
  </div>
  <div className="mt-7">
-  <Comment 
-  threadId={JSON.stringify(thread._id)}
-  currentUserImg={user?.imageUrl as string}
-  currentUserId={JSON.stringify(userInfo._id)}
-  />
+ <Comment
+          threadId={params.threadId}
+          currentUserImg={user?.imageUrl as string}
+          currentUserId={JSON.stringify(userInfo._id)}
+        />
  </div>
 
  <div className="mt-10 ">

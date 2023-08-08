@@ -48,7 +48,6 @@ export default function PostThread({ userId }: Props) {
       });
       router.push("/");
   } catch (error : any) {
-    console.log(`Failed to create thread ${error.message}`)
   }
   }
 
