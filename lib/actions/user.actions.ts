@@ -91,6 +91,8 @@ export async function fetchUserThreads(userId : string){
             },
           },
         ],
+      }).sort({
+         createdAt : -1
       });
       return threads;
   } catch (error : any) {

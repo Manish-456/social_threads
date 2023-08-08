@@ -2,7 +2,6 @@ import React from "react";
 import { redirect } from "next/navigation";
 import { currentUser } from "@clerk/nextjs";
 import { fetchUser } from "@/lib/actions/user.actions";
-import PostThread from "@/components/forms/PostThread";
 import ProfileHeader from "@/components/shared/ProfileHeader";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { profileTabs } from "@/constants";
