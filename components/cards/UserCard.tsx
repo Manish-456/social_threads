@@ -21,6 +21,8 @@ imgUrl,
 personType,
 }: Props) {
   const router = useRouter();
+  
+  const isCommunity = personType === "Community";
 return <article className="user-card">
     <div className="user-card_avatar ">
         <Image src={imgUrl} alt="logo" 
@@ -30,6 +32,14 @@ return <article className="user-card">
             <p className="text-small-medium text-gray-1">{username}</p>
         </div>
     </div>
-    <Button className="user-card_btn" onClick={() => router.push(`/profile/${id}`)}>View</Button>
+    <Button className="user-card_btn" 
+      onClick={() => {
+        if (isCommunity) {
+          router.push(`/communities/${id}`);
+        } else {
+          router.push(`/profile/${id}`);
+        }
+      }}
+    >View</Button>
   </article>;
 }

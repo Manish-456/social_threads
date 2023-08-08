@@ -4,8 +4,8 @@ import { revalidatePath } from "next/cache";
 import User from '../models/user.model';
 import { connectToDb } from "../mongoose";
 import Thread from "../models/thread.model";
-import { getJsPageSizeInKb } from "next/dist/build/utils";
 import { FilterQuery, SortOrder } from "mongoose";
+import Community from '../models/community.model';
 
 interface UserProps {
         userId: string;
@@ -58,10 +58,10 @@ export const fetchUser = async(userId : string) => {
       return await User.findOne({
          id : userId
       })
-      // .populate({
-      //    path : "communities",
-      //    model : Community
-      // })
+      .populate({
+         path : "communities",
+         model : Community
+      })
    } catch (error : any) {
        throw new Error(`Failed to fetch user : ${error.message}`)
    }
@@ -100,11 +100,11 @@ export async function fetchUsers({
    pageSize = 20,
    sortBy = 'desc'
 } : {
-   userId : string;
-   searchString : string;
-   pageNumber : number;
-   pageSize : number;
-   sortBy : SortOrder
+   userId? : string;
+   searchString? : string;
+   pageNumber? : number;
+   pageSize? : number;
+   sortBy? : SortOrder
 }){
    try {
       connectToDb();

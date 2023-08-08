@@ -24,12 +24,12 @@ import { usePathname, useRouter } from "next/navigation";
 
 interface Props {
   user: {
-    id: string;
-    objectId: string;
-    username: string;
-    name: string;
-    bio: string;
-    image: string;
+    id?: string;
+    objectId?: string;
+    username?: string;
+    name?: string;
+    bio?: string;
+    image?: string;
   };
   btnTitle: string;
 }
@@ -86,7 +86,7 @@ export default function AccountProfile({ user, btnTitle }: Props) {
 
 
     await updateUser({
-      userId: user.id,
+      userId: user.id as string,
       username: values.username,
       name: values.name,
       bio: values.bio,

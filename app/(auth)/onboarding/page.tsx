@@ -1,12 +1,14 @@
 import React from "react";
 import { currentUser } from "@clerk/nextjs";
 import AccountProfile from "@/components/forms/AccountProfile";
+import { fetchUser } from "@/lib/actions/user.actions";
+import { redirect } from "next/navigation";
 
 export default async function Onboarding() {
   const user = await currentUser();
 
-  const userInfo = {};
-
+  const userInfo = await fetchUser(user?.id as string);
+      if(userInfo.onboarded) redirect('/')
   const userData = {
     id: user?.id,
     objectId: userInfo?._id,
@@ -22,7 +24,8 @@ export default async function Onboarding() {
         Complete your profile now to use Threads
       </p>
       <section className="mt-9 bg-dark-2 p-10">
-        <AccountProfile user={userData} btnTitle="Continue" />
+        <AccountProfile 
+        user={userData} btnTitle="Continue" />
       </section>
     </main>
   );

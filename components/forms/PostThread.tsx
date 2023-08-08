@@ -16,8 +16,10 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "../ui/textarea";
 import { ThreadValidation } from "@/lib/validations/thread";
 
+
 import { usePathname, useRouter } from "next/navigation";
 import { createThread } from "@/lib/actions/thread.actions";
+import { useOrganization } from "@clerk/nextjs";
 
 interface Props {
   userId: string;
@@ -26,6 +28,7 @@ interface Props {
 export default function PostThread({ userId }: Props) {
   const pathname = usePathname();
   const router = useRouter();
+  const {organization} = useOrganization();
 
   const form = useForm<z.infer<typeof ThreadValidation>>({
     resolver: zodResolver(ThreadValidation),
@@ -40,7 +43,7 @@ export default function PostThread({ userId }: Props) {
     await createThread({
         text: values.thread,
         author: userId,
-        communityId: null,
+        communityId: organization ? organization.id : null,
         path: pathname,
       });
       router.push("/");
