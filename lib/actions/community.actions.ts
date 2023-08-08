@@ -93,6 +93,8 @@ export async function fetchCommunityPosts(id: string) {
           },
         },
       ],
+    }).sort({
+      created : -1
     });
 
     return communityPosts;
