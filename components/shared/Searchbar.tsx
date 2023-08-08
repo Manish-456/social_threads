@@ -24,7 +24,7 @@ export default function Searchbar({ routeType }: Props) {
     }, 300);
 
     return () => clearTimeout(delayDebounceFn);
-  }, [search, routeType]);
+  }, [search, routeType, router]);
   return (
     <div className="searchbar">
       <Image
